@@ -40,7 +40,7 @@ $ vim
 下来需要为插件YcmComplete安装C++补全所需要的环境，YouCompleteMe具体的使用方法[参见](https://github.com/Valloric/YouCompleteMe#c-family-semantic-completion)。
 ```
 $ cd ~/.vim/bundle/YouCompleteMe
-$ ./install.py --clangd-completer
+$ ./install.py --clang-completer
 ```
 All done!!! Have a nice time!!!!
 
