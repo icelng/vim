@@ -7,7 +7,7 @@
 Markdown插件的使用方法[参见](https://github.com/iamcco/markdown-preview.nvim)。
 
 ## 配置(暂仅支持Ubuntu16.04)
-> Vim 版本需要 > 7.4, 并且支持python3 (我使用的是ubuntu16.04,使用apt 安装的vim自然支持)
+> Vim 版本需要 >= 7.4, 并且支持python3 (我使用的是ubuntu16.04,使用apt 安装的vim自然支持)
 
 先对原来的配置文件进行备份
 
