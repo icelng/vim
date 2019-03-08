@@ -1,12 +1,66 @@
-snippet function
-/* 函数名: $1
- * 功能:
- * 参数:
- * 返回值:
+snippet func
+/* 函数名: $1 
+ * 功能: $2
+ * 参数: `!p args = re.findall(r'[\(|,]\s*([&\*\s\w]+)', t[1])
+for i in range(len(args)):
+    if i == 0:
+        snip.rv = snip.rv + args[i] + ','
+    else:
+	    snip.rv = snip.rv + '\n' + 9*' ' + args[i] + ','
+	`
+ * 返回值: $3
  */
 $1{
-	
+    $0
 }
+endsnippet
+
+snippet if
+if($1){
+    $0
+}
+endsnippet
+
+snippet "[\s\w]+\([&\*\s\w]+(\,\s*[&\*\s\w]+)*\)" "给函数添加注释" br
+`!p func_name = match.group(0)
+args = re.findall(r'[\(|,]\s*([&\*\s\w]+)', func_name)
+snip.rv = snip.rv + '\n' + '/* 函数名: ' + func_name
+snip.rv = snip.rv + '\n' + ' * 功能: '`$1
+`!p
+snip.rv = snip.rv + ' * 参数: '
+for i in range(len(args)):
+    if i == 0:
+	    snip.rv = snip.rv + args[i] + ','
+	else:
+	    snip.rv = snip.rv + '\n' + ' *' + 7*' ' + args[i] + ','
+snip.rv = snip.rv + '\n * 返回值: '
+snip.rv = snip.rv + '\n */'
+snip.rv = snip.rv + '\n' + func_name
+`
+endsnippet
+
+snippet middleware
+/* 中间件名: $1
+ * 功能: $2
+ * 中间数据参数类型: $3
+ */
+MIDDLEWARE_DEFINE($1, pchain, pmdata)
+$0
+MIDDLEWARE_DEFINE_END
+endsnippet
+
+snippet middleexcept
+/* 异常中间件名: $1
+ * 功能: $2
+ * 中间数据参数类型: $3
+ */
+MIDDLEWARE_EXCEPTION_DEFINE($1, pchain, except_type, sub_type, pmdata)
+$0
+MIDDLEWARE_DEFINE_END
+endsnippet
+
+snippet printf
+printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:,:\);)/}$2${1/([^%]|[%%])*(%.)?.*/(?2:\);)/}
 endsnippet
 
 snippet syslogdebug
@@ -14,5 +68,26 @@ syslog(LOG_DEBUG,"$0");
 endsnippet
 
 snippet //
-/*$1*/
+/* $0 */
+endsnippet
+
+snippet log
+log_out(${1:LOG_DEBUG}, "${2:%s}"${2/([^%]|%%)*(%.)?.*/(?2:,:\);)/}$3${2/([^%]|[%%])*(%.)?.*/(?2:\);)/}
+endsnippet
+
+# 中间件的一些自动补全
+snippet complete
+MIDDLEWARE_COMPLETE();
+endsnippet
+
+snippet next
+MIDDLEWARE_NEXT(${1:p_next_mdata});
+endsnippet
+
+snippet recall
+MIDDLEWARE_RECALL(${1:p_next_mdata});
+endsnippet
+
+snippet except
+MIDDLEWARE_EXCEPTION(${1:except_type}, ${2:sub_type_num}, ${3:p_except_mdata});
 endsnippet
