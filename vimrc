@@ -164,6 +164,8 @@ Bundle 'TxtBrowser'
 Bundle 'ZoomWin'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'UltiSnips'
+Bundle 'iamcco/markdown-preview.vim'
+Bundle 'iamcco/mathjax-support-for-mkdp'
 "Bundle 'artur-shaik/vim-javacomplete2'
 "Bundle 'airblade/vim-rooter'
 
