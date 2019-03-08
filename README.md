@@ -1,10 +1,10 @@
 ## 演示
 ##### 编写C++
 ![图一 C++演示](images/c++演示.gif)
-##### 编写markdown
+##### 编写Markdown
 ![图二 markdown演示](images/markdown演示.gif)
 
-Markdown的使用方法[参见](https://github.com/iamcco/markdown-preview.nvim)。
+Markdown插件的使用方法[参见](https://github.com/iamcco/markdown-preview.nvim)。
 
 ## 配置(暂仅支持Ubuntu16.04)
 > Vim 版本需要 > 7.4, 并且支持python3 (我使用的是ubuntu16.04,使用apt 安装的vim自然支持)
@@ -22,14 +22,12 @@ clone vim配置文件,并把文件拷贝到相应的位置:
 $ git clone https://github.com/yiranFancier/vim.git ~/vim
 $ cp ~/vim/vimrc ~/.vimrc
 $ mv ~/vim ~/.vim
-
 ```
 
 接着运行vim:
 
 ```
 $ vim
-
 ```
 
 在vim编辑器里运行命令:
@@ -44,7 +42,6 @@ $ vim
 $ cd ~/.vim/bundle/YouCompleteMe
 $ ./install.py --clangd-completer
 ```
-
 All done!!! Have a nice time!!!!
 
 
