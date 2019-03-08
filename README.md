@@ -38,6 +38,8 @@ $ vim
 上条的指令的作用是通过Vundle安装我所使用的Vim各种插件。其中一个牛逼的自动补全插件YouCompleteMe比较大，需要耐心等待。Vundle的使用方法[参见](https://github.com/vim-scripts/vundle)。
 
 下来需要为插件YcmComplete安装C++补全所需要的环境，YouCompleteMe具体的使用方法[参见](https://github.com/Valloric/YouCompleteMe#c-family-semantic-completion)。
+
+在终端输入命令:
 ```
 $ cd ~/.vim/bundle/YouCompleteMe
 $ ./install.py --clang-completer
