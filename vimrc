@@ -83,8 +83,9 @@ if g:islinux
             syntax on
         endif
         set backspace=2                " 设置退格键可用
-        set mouse=a                    " 在任何模式下启用鼠标
+        set mouse-=a                    " 在任何模式下启用鼠标
         set t_Co=256                   " 在终端启用256色
+        set vb t_vb=
     else
         " This line should not be removed as it ensures that various options are
         " properly set to work with the Vim-related packages available in Debian.
@@ -96,7 +97,8 @@ if g:islinux
             syntax on
         endif
 
-        set mouse=a                    " 在任何模式下启用鼠标
+        set mouse-=a                    " 在任何模式下启用鼠标
+        set vb t_vb=
         set t_Co=256                   " 在终端启用256色
         set backspace=2                " 设置退格键可用
 
@@ -124,10 +126,10 @@ set nocompatible                                      "禁用 Vi 兼容模式
 filetype off                                          "禁用文件类型侦测
 
 if g:islinux
-    set rtp+=~/.vim/bundle/vundle/
+    set rtp+=~/.vim/vundle.git/ 
     call vundle#rc()
 else
-    set rtp+=$VIM/vimfiles/bundle/vundle/
+    set rtp+=~/.vim/vundle.git/ 
     call vundle#rc('$VIM/vimfiles/bundle/')
 endif
 
@@ -162,7 +164,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'taglist.vim'
 Bundle 'TxtBrowser'
 Bundle 'ZoomWin'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 Bundle 'UltiSnips'
 Bundle 'iamcco/markdown-preview.vim'
 Bundle 'iamcco/mathjax-support-for-mkdp'
