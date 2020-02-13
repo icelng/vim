@@ -99,7 +99,13 @@ if g:islinux
 
         set mouse-=a                    " 在任何模式下启用鼠标
         set vb t_vb=
-        set t_Co=256                   " 在终端启用256色
+        if exists('+termguicolors')     " 真彩
+            let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+            let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+            set termguicolors
+        else
+            set t_Co=256                   " 256色
+        endif
         set backspace=2                " 设置退格键可用
 
         " Source a global configuration file if available
@@ -148,7 +154,7 @@ endif
 Bundle 'ctrlpvim/ctrlp.vim'
 "Bundle 'mattn/emmet-vim'
 Bundle 'Yggdroot/indentLine'
-Bundle 'airblade/vim-gitgutter'
+"Bundle 'airblade/vim-gitgutter'
 "Bundle 'jreybert/vimagit'
 "Bundle 'vim-javacompleteex'
 "Bundle 'Mark--Karkat'
@@ -249,8 +255,11 @@ imap <c-h> <Left>
 " Ctrl + L 插入模式下光标向右移动
 imap <c-l> <Right>
 
-" 启用每行超过80列的字符提示（字体变蓝并加下划线），不启用就注释掉
-au BufWinEnter * let w:m2=matchadd('Underlined', '\%>' . 80 . 'v.\+', -1)
+" 启用每行超过80列的字符提示
+set colorcolumn=80
+
+let g:loaded_matchparen=1
+hi MatchParen ctermbg=Yellow guibg=lightblue
 
 " -----------------------------------------------------------------------------
 "  < 界面配置 >
@@ -280,8 +289,8 @@ if g:isGUI
     "colorscheme Molokai
     colorscheme Tomorrow-Night-Eighties               "Gvim配色方案
 else
-    syntax enable
-    "set background=dark
+    syntax on
+    set background=dark
     "colorscheme solarized
     "colorscheme Molokai
     colorscheme Tomorrow-Night-Eighties               "终端配色方案
@@ -313,7 +322,7 @@ noremap <c-u> <c-r>
 
 
 " -----------------------------------------------------------------------------
-"  < c++-enhance-hiaghlight 插件配置 >
+"  < c++-enhanced-highlight 插件配置 >
 " -----------------------------------------------------------------------------
 " c++ 语法高亮
 let g:cpp_class_scope_highlight = 1
@@ -321,17 +330,19 @@ let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_posix_standard = 1
 let g:cpp_concepts_highlight = 1
+autocmd! FileType c,cpp,java,php call CSyntaxAfter()
+
 
 "" -----------------------------------------------------------------------------
 "  < gitgutter 插件配置 >
 " -----------------------------------------------------------------------------
-let g:gitgutter_async = 1
-autocmd BufWritePost * GitGutter
-function! GitStatus()
-      let [a,m,r] = GitGutterGetHunkSummary()
-        return printf('+%d ~%d -%d', a, m, r)
-endfunction
-set statusline+=%{GitStatus()}
+" let g:gitgutter_async = 1
+" autocmd BufWritePost * GitGutter
+" function! GitStatus()
+"       let [a,m,r] = GitGutterGetHunkSummary()
+"         return printf('+%d ~%d -%d', a, m, r)
+" endfunction
+" set statusline+=%{GitStatus()}
 
 
 " -----------------------------------------------------------------------------
@@ -382,6 +393,7 @@ let g:indentLine_color_term = 239
 " <Leader>ca 在/*...*/与//这两种注释方式中切换（其它语言可能不一样了）
 " <Leader>cA 行尾注释
 let NERDSpaceDelims = 1                     "在左注释符之后，右注释符之前留有空格
+vmap <c-/> <leader>cc
 
 " -----------------------------------------------------------------------------
 "  < nerdtree 插件配置 >
@@ -389,7 +401,7 @@ let NERDSpaceDelims = 1                     "在左注释符之后，右注释�
 " 有目录村结构的文件浏览插件
 
 " 常规模式下输入 F4 调用插件
-nmap <F4> :NERDTreeToggle<CR>
+nmap <c-t> :NERDTreeToggle<CR>
 
 
 " -----------------------------------------------------------------------------
@@ -458,7 +470,7 @@ let g:ycm_confirm_extra_conf = 0      "每次打开vim的时候不询问加载�
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_seed_identifiers_with_syntax = 1  " identifiers取自syntax
+let g:ycm_seed_identifiers_with_syntax = 0  " identifiers取自syntax
 let g:ycm_collect_identifiers_from_tags_files = 1 " identifiers取自tags
 nmap <c-]> :YcmCompleter GoTo<CR>
 nmap <c-r> :YcmCompleter GoToReferences<CR>
