@@ -115,6 +115,11 @@ if g:islinux
     endif
 endif
 
+" 不同模式该表光标样式
+let &t_SI.="\e[5 q" "SI = INSERT mode
+let &t_SR.="\e[4 q" "SR = REPLACE mode
+let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
+
 " -----------------------------------------------------------------------------
 "  < tmux 配置>
 " -----------------------------------------------------------------------------
@@ -290,13 +295,14 @@ if g:isGUI
     colorscheme Tomorrow-Night-Eighties               "Gvim配色方案
 else
     syntax on
-    set background=dark
+    "set background=dark
     "colorscheme solarized
     "colorscheme Molokai
     colorscheme Tomorrow-Night-Eighties               "终端配色方案
     "colorscheme dracula
 endif
 
+hi Normal guibg=NONE ctermbg=NONE    "  背景与终端一致
 "let g:rehash256=1
 "let g:molokai_original=1
 
@@ -470,8 +476,11 @@ let g:ycm_confirm_extra_conf = 0      "每次打开vim的时候不询问加载�
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_seed_identifiers_with_syntax = 0  " identifiers取自syntax
+let g:ycm_seed_identifiers_with_syntax = 1  " identifiers取自syntax
 let g:ycm_collect_identifiers_from_tags_files = 1 " identifiers取自tags
+let g:ycm_enable_diagnostic_signs = 0
+highlight YcmErrorSection guibg=#3f0000
+highlight YcmWarningSection guibg=#003f00  guifg=#000000
 nmap <c-]> :YcmCompleter GoTo<CR>
 nmap <c-r> :YcmCompleter GoToReferences<CR>
 "nnoremap <c-r> :YcmCompleter RefactorRename 
