@@ -159,7 +159,7 @@ endif
 Bundle 'ctrlpvim/ctrlp.vim'
 "Bundle 'mattn/emmet-vim'
 Bundle 'Yggdroot/indentLine'
-"Bundle 'airblade/vim-gitgutter'
+Bundle 'airblade/vim-gitgutter'
 "Bundle 'jreybert/vimagit'
 "Bundle 'vim-javacompleteex'
 "Bundle 'Mark--Karkat'
@@ -263,8 +263,8 @@ imap <c-l> <Right>
 " 启用每行超过80列的字符提示
 set colorcolumn=80
 
-let g:loaded_matchparen=1
-hi MatchParen ctermbg=Yellow guibg=lightblue
+"let g:loaded_matchparen=1
+"hi MatchParen ctermbg=Yellow guibg=lightblue
 
 " -----------------------------------------------------------------------------
 "  < 界面配置 >
@@ -342,13 +342,14 @@ autocmd! FileType c,cpp,java,php call CSyntaxAfter()
 "" -----------------------------------------------------------------------------
 "  < gitgutter 插件配置 >
 " -----------------------------------------------------------------------------
-" let g:gitgutter_async = 1
-" autocmd BufWritePost * GitGutter
-" function! GitStatus()
-"       let [a,m,r] = GitGutterGetHunkSummary()
-"         return printf('+%d ~%d -%d', a, m, r)
-" endfunction
-" set statusline+=%{GitStatus()}
+let g:gitgutter_async = 1
+autocmd BufWritePost * GitGutter
+function! GitStatus()
+      let [a,m,r] = GitGutterGetHunkSummary()
+        return printf('+%d ~%d -%d', a, m, r)
+endfunction
+set statusline+=%{GitStatus()}
+let g:gitgutter_preview_win_floating = 1
 
 
 " -----------------------------------------------------------------------------
@@ -407,7 +408,7 @@ vmap <c-/> <leader>cc
 " 有目录村结构的文件浏览插件
 
 " 常规模式下输入 F4 调用插件
-nmap <c-t> :NERDTreeToggle<CR>
+" nmap <c-t> :NERDTreeToggle<CR>
 
 
 " -----------------------------------------------------------------------------
@@ -479,8 +480,8 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_seed_identifiers_with_syntax = 1  " identifiers取自syntax
 let g:ycm_collect_identifiers_from_tags_files = 1 " identifiers取自tags
 let g:ycm_enable_diagnostic_signs = 0
-highlight YcmErrorSection guibg=#3f0000
-highlight YcmWarningSection guibg=#003f00  guifg=#000000
+highlight YcmErrorSection guibg=#8f0000   guifg=#ffffff
+highlight YcmWarningSection guibg=#008f00  guifg=#ffffff
 nmap <c-]> :YcmCompleter GoTo<CR>
 nmap <c-r> :YcmCompleter GoToReferences<CR>
 "nnoremap <c-r> :YcmCompleter RefactorRename 
@@ -498,4 +499,4 @@ let g:UltiSnipsEditSplit="vertical"
 " 秒内，而<Leader>cs是先按"\"键再按"c"又再按"s"键；如要修改"<leader>"键，可以把
 " 下面的设置取消注释，并修改双引号中的键为你想要的，如修改为逗号键。
 
-" let mapleader = ","
+let mapleader = ","
