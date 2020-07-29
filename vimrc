@@ -120,6 +120,9 @@ let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 
+" 更新时间
+set updatetime=100
+
 " -----------------------------------------------------------------------------
 "  < tmux 配置>
 " -----------------------------------------------------------------------------
@@ -261,7 +264,7 @@ imap <c-h> <Left>
 imap <c-l> <Right>
 
 " 启用每行超过80列的字符提示
-set colorcolumn=80
+set colorcolumn=120
 
 "let g:loaded_matchparen=1
 "hi MatchParen ctermbg=Yellow guibg=lightblue
@@ -350,6 +353,7 @@ function! GitStatus()
 endfunction
 set statusline+=%{GitStatus()}
 let g:gitgutter_preview_win_floating = 1
+highlight! link SignColumn LineNr
 
 
 " -----------------------------------------------------------------------------
