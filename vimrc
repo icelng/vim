@@ -348,12 +348,21 @@ autocmd! FileType c,cpp,java,php call CSyntaxAfter()
 let g:gitgutter_async = 1
 autocmd BufWritePost * GitGutter
 function! GitStatus()
-      let [a,m,r] = GitGutterGetHunkSummary()
-        return printf('+%d ~%d -%d', a, m, r)
+let [a,m,r] = GitGutterGetHunkSummary()
+    return printf('+%d ~%d -%d', a, m, r)
 endfunction
 set statusline+=%{GitStatus()}
 let g:gitgutter_preview_win_floating = 1
 highlight! link SignColumn LineNr
+
+function! GitLog(idx)
+    let shellCmd = "git log --oneline |awk '{ if(NR==".a:idx.") print $0 }'"
+    let log = system(l:shellCmd)
+    echo log
+endfunction
+
+command! -nargs=1 GitLog :call GitLog(<args>)
+command! -nargs=1 DiffBase :let g:gitgutter_diff_base='<args>'
 
 
 " -----------------------------------------------------------------------------
@@ -387,7 +396,6 @@ let g:indentLine_color_term = 239
 
 " 设置 GUI 对齐线颜色，如果不喜欢可以将其注释掉采用默认颜色
 " let g:indentLine_color_gui = '#A4E57E'
-
 
 
 
