@@ -23,6 +23,7 @@ else
 endif
 
 
+
 " =============================================================================
 "                          << 以下为软件默认配置 >>
 " =============================================================================
@@ -123,6 +124,9 @@ let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 " 更新时间
 set updatetime=100
 
+" leader 重映射
+let mapleader = ","
+
 " -----------------------------------------------------------------------------
 "  < tmux 配置>
 " -----------------------------------------------------------------------------
@@ -163,6 +167,7 @@ Bundle 'ctrlpvim/ctrlp.vim'
 "Bundle 'mattn/emmet-vim'
 Bundle 'Yggdroot/indentLine'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'rhysd/git-messenger.vim'
 "Bundle 'jreybert/vimagit'
 "Bundle 'vim-javacompleteex'
 "Bundle 'Mark--Karkat'
@@ -355,14 +360,36 @@ set statusline+=%{GitStatus()}
 let g:gitgutter_preview_win_floating = 1
 highlight! link SignColumn LineNr
 
-function! GitLog(idx)
-    let shellCmd = "git log --oneline |awk '{ if(NR==".a:idx.") print $0 }'"
-    let log = system(l:shellCmd)
-    echo log
+function! GetCommitLog(idx)
+    let shell_cmd = "git log --oneline |awk '{ if(NR==".a:idx.") print $0 }'"
+    let commit_log = trim(system(l:shell_cmd))
+    return l:commit_log
 endfunction
 
-command! -nargs=1 GitLog :call GitLog(<args>)
-command! -nargs=1 DiffBase :let g:gitgutter_diff_base='<args>'
+function! GetCommitId(idx)
+    let shell_cmd = "git log --oneline |awk '{ if(NR==".a:idx.") print $1 }'"
+    let commit_id = trim(system(l:shell_cmd))
+    return l:commit_id
+endfunction
+
+function! DiffBaseByIdx(idx)
+    let commit_id = GetCommitId(a:idx + 1)
+    let g:gitgutter_diff_base = l:commit_id
+    let commit_log = GetCommitLog(a:idx + 1)
+    echo "git diff ".l:commit_log
+    GitGutter
+endfunction
+
+command! -nargs=1 GitDiffPre :call DiffBaseByIdx(<args>)
+nmap <Leader>hj :GitGutterNextHunk<CR>
+nmap <Leader>hk :GitGutterPrevHunk<CR>
+
+"" -----------------------------------------------------------------------------
+"  < git-messenger 插件配置 >
+" -----------------------------------------------------------------------------
+
+nmap <Leader>gm :GitMessenger<CR>
+let g:git_messenger_close_on_cursor_moved = 0
 
 
 " -----------------------------------------------------------------------------
@@ -503,12 +530,3 @@ nmap <c-r> :YcmCompleter GoToReferences<CR>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsEditSplit="vertical"
 
-" =============================================================================
-"                          << 其它 >>
-" =============================================================================
-" 注：上面配置中的"<Leader>"在本软件中设置为"\"键（引号里的反斜杠），如<Leader>t
-" 指在常规模式下按"\"键加"t"键，这里不是同时按，而是先按"\"键后按"t"键，间隔在一
-" 秒内，而<Leader>cs是先按"\"键再按"c"又再按"s"键；如要修改"<leader>"键，可以把
-" 下面的设置取消注释，并修改双引号中的键为你想要的，如修改为逗号键。
-
-let mapleader = ","
