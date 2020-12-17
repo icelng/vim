@@ -329,6 +329,10 @@ noremap <c-h> <c-w>h
 noremap <c-l> <c-w>l
 noremap <c-u> <c-r>
 
+" 高亮尾行
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 " =============================================================================
 "                          << 以下为常用插件配置 >>
