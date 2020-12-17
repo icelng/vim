@@ -383,6 +383,7 @@ endfunction
 command! -nargs=1 GitDiffPre :call DiffBaseByIdx(<args>)
 nmap <Leader>hj :GitGutterNextHunk<CR>
 nmap <Leader>hk :GitGutterPrevHunk<CR>
+nmap <Leader>gd :GitDiffPre 
 
 "" -----------------------------------------------------------------------------
 "  < git-messenger 插件配置 >
@@ -523,7 +524,8 @@ highlight YcmErrorSection guibg=#8f0000   guifg=#ffffff
 highlight YcmWarningSection guibg=#008f00  guifg=#ffffff
 nmap <c-]> :YcmCompleter GoTo<CR>
 nmap <c-r> :YcmCompleter GoToReferences<CR>
-"nnoremap <c-r> :YcmCompleter RefactorRename 
+nmap <leader>rr :YcmCompleter RefactorRename 
+
 " =============================================================================
 "                          << 以下为UltiSnips配置 >>
 " =============================================================================
