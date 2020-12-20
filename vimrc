@@ -148,54 +148,26 @@ set nocompatible                                      "禁用 Vi 兼容模式
 filetype off                                          "禁用文件类型侦测
 
 if g:islinux
-    set rtp+=~/.vim/vundle.git/ 
+    set rtp+=~/.vim/vundle.git/
     call vundle#rc()
 else
-    set rtp+=~/.vim/vundle.git/ 
+    set rtp+=~/.vim/vundle.git/
     call vundle#rc('$VIM/vimfiles/bundle/')
 endif
 
 
-" 以下为要安装或更新的插件，不同仓库都有（具体书写规范请参考帮助）
-"Bundle 'a.vim'
-"Bundle 'Align'
-"Bundle 'jiangmiao/auto-pairs'
-"Bundle 'bufexplorer.zip'
-"Bundle 'ccvext.vim'
-"Bundle 'cSyntaxAfter'
+" 以下为要安装或更新的插件（具体书写规范请参考帮助）
 Bundle 'ctrlpvim/ctrlp.vim'
-"Bundle 'mattn/emmet-vim'
 Bundle 'Yggdroot/indentLine'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'rhysd/git-messenger.vim'
-"Bundle 'jreybert/vimagit'
-"Bundle 'vim-javacompleteex'
-"Bundle 'Mark--Karkat'
-"Bundle 'Shougo/neocomplcache.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-"Bundle 'OmniCppComplete'
-"Bundle 'Lokaltog/vim-powerline'
 Bundle 'vim-airline/vim-airline'
-"Bundle 'repeat.vim'
-"Bundle 'msanders/snipmate.vim'
-"Bundle 'wesleyche/SrcExpl'
-"Bundle 'std_c.zip'
-"Bundle 'tpope/vim-surround'
-"Bundle 'scrooloose/syntastic'
-"Bundle 'vim-syntastic/syntastic'
 Bundle 'majutsushi/tagbar'
 Bundle 'taglist.vim'
-"Bundle 'TxtBrowser'
-"Bundle 'ZoomWin'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'UltiSnips'
-Bundle 'octol/vim-cpp-enhanced-highlight'  
-"Bundle 'iamcco/markdown-preview.vim'
-"Bundle 'iamcco/mathjax-support-for-mkdp'
-"Bundle 'artur-shaik/vim-javacomplete2'
-"Bundle 'airblade/vim-rooter'
-
+Bundle 'ynglng/YouCompleteMe'
+Bundle 'octol/vim-cpp-enhanced-highlight'
 
 
 " -----------------------------------------------------------------------------
