@@ -168,6 +168,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'taglist.vim'
 Bundle 'ynglng/YouCompleteMe'
 Bundle 'octol/vim-cpp-enhanced-highlight'
+Bundle 'voldikss/vim-translator'
 
 
 " -----------------------------------------------------------------------------
@@ -424,7 +425,7 @@ vmap <c-/> <leader>cc
 " 有目录村结构的文件浏览插件
 
 " 常规模式下输入 F4 调用插件
-" nmap <c-t> :NERDTreeToggle<CR>
+nmap <leader>tt :NERDTreeToggle<CR>
 
 
 " -----------------------------------------------------------------------------
@@ -469,15 +470,11 @@ let Tlist_Exit_OnlyWindow=1                 "如果Taglist窗口是最后一个�
 let Tlist_WinWidth=30                       "设置窗口宽度
 let Tlist_Use_Right_Window=1                "在右侧窗口中显示
 
-
 " -----------------------------------------------------------------------------
-"  < ZoomWin 插件配置 >
+"  < vim-translator 插件配置 >
 " -----------------------------------------------------------------------------
-" 用于分割窗口的最大化与还原
-" 常规模式下按快捷键 <c-w>o 在最大化与还原间切换
-
-
-
+nmap <Leader>tl :TranslateW<CR>
+vmap <Leader>tl <plug>TranslateWV
 
 " =============================================================================
 "                          << 以下为常用自动命令配置 >>
@@ -500,7 +497,7 @@ highlight YcmErrorSection guibg=#8f0000   guifg=#ffffff
 highlight YcmWarningSection guibg=#008f00  guifg=#ffffff
 nmap <c-]> :YcmCompleter GoTo<CR>
 nmap <c-r> :YcmCompleter GoToReferences<CR>
-nmap <leader>rr :YcmCompleter RefactorRename 
+nmap <leader>rr :YcmCompleter RefactorRename
 
 " =============================================================================
 "                          << 以下为UltiSnips配置 >>
