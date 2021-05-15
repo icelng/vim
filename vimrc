@@ -166,7 +166,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'vim-airline/vim-airline'
 Bundle 'majutsushi/tagbar'
 Bundle 'taglist.vim'
-Bundle 'ynglng/YouCompleteMe'
+Bundle 'ycm-core/YouCompleteMe'
 Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'voldikss/vim-translator'
 
@@ -493,11 +493,13 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_seed_identifiers_with_syntax = 1  " identifiers取自syntax
 let g:ycm_collect_identifiers_from_tags_files = 1 " identifiers取自tags
 let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_auto_hover=''
 highlight YcmErrorSection guibg=#8f0000   guifg=#ffffff
 highlight YcmWarningSection guibg=#008f00  guifg=#ffffff
 nmap <c-]> :YcmCompleter GoTo<CR>
 nmap <c-r> :YcmCompleter GoToReferences<CR>
 nmap <leader>rr :YcmCompleter RefactorRename
+nmap <c-i> <plug>(YCMHover)
 
 " =============================================================================
 "                          << 以下为UltiSnips配置 >>
