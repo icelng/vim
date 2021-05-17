@@ -499,6 +499,7 @@ highlight YcmWarningSection guibg=#008f00  guifg=#ffffff
 nmap <c-]> :YcmCompleter GoTo<CR>
 nmap <c-r> :YcmCompleter GoToReferences<CR>
 nmap <leader>rr :YcmCompleter RefactorRename
+nmap <leader>ss <Plug>(YCMFindSymbolInWorkspace)
 nmap <c-i> <plug>(YCMHover)
 
 " =============================================================================
