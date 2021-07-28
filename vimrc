@@ -327,40 +327,43 @@ autocmd! FileType c,cpp,java,php call CSyntaxAfter()
 "" -----------------------------------------------------------------------------
 "  < gitgutter 插件配置 >
 " -----------------------------------------------------------------------------
-let g:gitgutter_async = 1
-autocmd BufWritePost * GitGutter
-function! GitStatus()
-let [a,m,r] = GitGutterGetHunkSummary()
-    return printf('+%d ~%d -%d', a, m, r)
-endfunction
-set statusline+=%{GitStatus()}
-let g:gitgutter_preview_win_floating = 1
-highlight! link SignColumn LineNr
 
-function! GetCommitLog(idx)
-    let shell_cmd = "git log --oneline |awk '{ if(NR==".a:idx.") print $0 }'"
-    let commit_log = trim(system(l:shell_cmd))
-    return l:commit_log
-endfunction
+if !empty(glob("~/.vim/bundle/vim-gitgutter"))
+    let g:gitgutter_async = 1
+    autocmd BufWritePost * GitGutter
+    function! GitStatus()
+        let [a,m,r] = GitGutterGetHunkSummary()
+            return printf('+%d ~%d -%d', a, m, r)
+    endfunction
+    set statusline+=%{GitStatus()}
+    let g:gitgutter_preview_win_floating = 1
+    highlight! link SignColumn LineNr
 
-function! GetCommitId(idx)
-    let shell_cmd = "git log --oneline |awk '{ if(NR==".a:idx.") print $1 }'"
-    let commit_id = trim(system(l:shell_cmd))
-    return l:commit_id
-endfunction
+    function! GetCommitLog(idx)
+        let shell_cmd = "git log --oneline |awk '{ if(NR==".a:idx.") print $0 }'"
+        let commit_log = trim(system(l:shell_cmd))
+        return l:commit_log
+    endfunction
 
-function! DiffBaseByIdx(idx)
-    let commit_id = GetCommitId(a:idx + 1)
-    let g:gitgutter_diff_base = l:commit_id
-    let commit_log = GetCommitLog(a:idx + 1)
-    echo "git diff ".l:commit_log
-    GitGutter
-endfunction
+    function! GetCommitId(idx)
+        let shell_cmd = "git log --oneline |awk '{ if(NR==".a:idx.") print $1 }'"
+        let commit_id = trim(system(l:shell_cmd))
+        return l:commit_id
+    endfunction
 
-command! -nargs=1 GitDiffPre :call DiffBaseByIdx(<args>)
-nmap <Leader>hj :GitGutterNextHunk<CR>
-nmap <Leader>hk :GitGutterPrevHunk<CR>
-nmap <Leader>gd :GitDiffPre 
+    function! DiffBaseByIdx(idx)
+        let commit_id = GetCommitId(a:idx + 1)
+        let g:gitgutter_diff_base = l:commit_id
+        let commit_log = GetCommitLog(a:idx + 1)
+        echo "git diff ".l:commit_log
+        GitGutter
+    endfunction
+
+    command! -nargs=1 GitDiffPre :call DiffBaseByIdx(<args>)
+    nmap <Leader>hj :GitGutterNextHunk<CR>
+    nmap <Leader>hk :GitGutterPrevHunk<CR>
+    nmap <Leader>gd :GitDiffPre
+endif
 
 "" -----------------------------------------------------------------------------
 "  < git-messenger 插件配置 >
@@ -507,7 +510,9 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsEditSplit="vertical"
 
 " jumplist 栈行为
-set jumpoptions=stack
+if exists("&jumpoptions")
+    set jumpoptions=stack
+endif
 
 " quickfix 垂直打开窗口快捷键
 autocmd! FileType qf nnoremap <buffer> <c-v> <C-w><Enter><C-w>L
