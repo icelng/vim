@@ -424,9 +424,7 @@ vmap <c-/> <leader>cc
 " -----------------------------------------------------------------------------
 " 有目录村结构的文件浏览插件
 
-" 常规模式下输入 F4 调用插件
-nmap <leader>tt :NERDTreeToggle<CR>
-
+nmap <leader>nt :NERDTreeToggle<CR>
 
 " -----------------------------------------------------------------------------
 "  < powerline 插件配置 >
@@ -508,3 +506,8 @@ nmap <c-i> <plug>(YCMHover)
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsEditSplit="vertical"
 
+" jumplist 栈行为
+set jumpoptions=stack
+
+" quickfix 垂直打开窗口快捷键
+autocmd! FileType qf nnoremap <buffer> <c-v> <C-w><Enter><C-w>L
