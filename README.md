@@ -1,7 +1,7 @@
 # 使用指南
 ```
 # cd ~
-# git clone https://github.com/ynglng/vim.git
+# git clone https://github.com/icelng/vim.git
 # mv vim .vim
 # cd .vim
 # ./setup.sh
