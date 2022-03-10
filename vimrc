@@ -169,6 +169,7 @@ Bundle 'taglist.vim'
 Bundle 'ycm-core/YouCompleteMe'
 Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'voldikss/vim-translator'
+Bundle 'easymotion/vim-easymotion'
 
 
 " -----------------------------------------------------------------------------
