@@ -47,11 +47,11 @@ function! CSyntaxAfter()
 	syntax region _Comment start="\/\*" end="\*\/"
 	syntax match _Comment "\/\/.*$"
     syn match  cCustomScope    "::"
-    syn match  cCustomClass    "\w\+\s*::"
-                    \ contains=cCustomScope
+    "syn match  cCustomClass    "\w\+\s*::"
+    "                \ contains=cCustomScope
     syn match cCustomDot    "\." contained
     syn match cCustomPtr    "->" contained
-    syn match cCustomMemVar "\(\.\|->\)\h\w*" contains=cCustomDot,cCustomPtr
+    "syn match cCustomMemVar "\(\.\|->\)\h\w*" contains=cCustomDot,cCustomPtr
 
     "hi Function guifg=Cyan
     hi cCustomMemVar guifg=Green

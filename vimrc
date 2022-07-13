@@ -167,7 +167,7 @@ Bundle 'vim-airline/vim-airline'
 Bundle 'majutsushi/tagbar'
 Bundle 'taglist.vim'
 Bundle 'ycm-core/YouCompleteMe'
-Bundle 'octol/vim-cpp-enhanced-highlight'
+" Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'voldikss/vim-translator'
 Bundle 'easymotion/vim-easymotion'
 
@@ -481,6 +481,7 @@ let Tlist_Use_Right_Window=1                "在右侧窗口中显示
 " -----------------------------------------------------------------------------
 nmap <Leader>tl :TranslateW<CR>
 vmap <Leader>tl <plug>TranslateWV
+let g:translator_default_engines=['bing', 'youdao']
 
 " =============================================================================
 "                          << 以下为常用自动命令配置 >>
@@ -500,6 +501,8 @@ let g:ycm_seed_identifiers_with_syntax = 1  " identifiers取自syntax
 let g:ycm_collect_identifiers_from_tags_files = 1 " identifiers取自tags
 let g:ycm_enable_diagnostic_signs = 0
 let g:ycm_auto_hover=''
+let g:ycm_enable_semantic_highlighting=1
+let g:ycm_clangd_args = ['--background-index', '-pretty', '-j=16', '--malloc-trim', '--pch-storage=memory' ]
 highlight YcmErrorSection guibg=#8f0000   guifg=#ffffff
 highlight YcmWarningSection guibg=#008f00  guifg=#ffffff
 nmap <c-]> :YcmCompleter GoTo<CR>
