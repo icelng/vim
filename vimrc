@@ -503,6 +503,9 @@ let g:ycm_enable_diagnostic_signs = 0
 let g:ycm_auto_hover=''
 let g:ycm_enable_semantic_highlighting=1
 let g:ycm_clangd_args = ['--background-index', '-pretty', '-j=16', '--malloc-trim', '--pch-storage=memory' ]
+let g:ycm_enable_inlay_hints = 1
+let g:ycm_echo_current_diagnostic = 'virtual-text'
+"let g:ycm_clear_inlay_hints_in_insert_mode = 1
 highlight YcmErrorSection guibg=#8f0000   guifg=#ffffff
 highlight YcmWarningSection guibg=#008f00  guifg=#ffffff
 nmap <c-]> :YcmCompleter GoTo<CR>
@@ -511,6 +514,7 @@ nmap <leader>rr :YcmCompleter RefactorRename
 vmap <leader>fm :YcmCompleter Format<CR>
 nmap <leader>ss <Plug>(YCMFindSymbolInWorkspace)
 nmap <c-i> <plug>(YCMHover)
+nmap <leader>ih <Plug>(YCMToggleInlayHints)
 
 " =============================================================================
 "                          << 以下为UltiSnips配置 >>
