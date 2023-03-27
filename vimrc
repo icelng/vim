@@ -248,6 +248,12 @@ set colorcolumn=120
 "let g:loaded_matchparen=1
 "hi MatchParen ctermbg=Yellow guibg=lightblue
 
+"调整窗口大小
+nmap <Leader><Up> :res +5<CR>
+nmap <Leader><Down> :res -5<CR>
+nmap <Leader><Left> :vertical resize -5<CR>
+nmap <Leader><Right> :vertical resize +5<CR>
+
 " -----------------------------------------------------------------------------
 "  < 界面配置 >
 " -----------------------------------------------------------------------------
