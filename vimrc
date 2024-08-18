@@ -519,13 +519,13 @@ highlight YcmErrorSection guibg=#8f0000   guifg=#ffffff
 highlight YcmWarningSection guibg=#008f00  guifg=#ffffff
 nmap <c-]> :YcmCompleter GoTo<CR>
 nmap <c-r> :YcmCompleter GoToReferences<CR>
+nmap <leader>df :YcmCompleter GoToDefinition<CR>
 nmap <leader>rr :YcmCompleter RefactorRename
 vmap <leader>fm :YcmCompleter Format<CR>
 nmap <leader>ss <Plug>(YCMFindSymbolInWorkspace)
-nmap <c-i> <plug>(YCMHover)
 nmap <leader>ih <Plug>(YCMToggleInlayHints)
-nmap <leader>th <Plug>(YCMTypeHierarchy)
-nmap <leader>ch <Plug>(YCMCallHierarchy)
+nmap <leader>ht <Plug>(YCMTypeHierarchy)
+nmap <leader>hc <Plug>(YCMCallHierarchy)
 nmap <leader>rs :YcmRestartServer<CR>
 
 " =============================================================================
