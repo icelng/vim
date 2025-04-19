@@ -173,6 +173,7 @@ Bundle 'ycm-core/YouCompleteMe'
 " Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'voldikss/vim-translator'
 Bundle 'easymotion/vim-easymotion'
+Bundle 'editorconfig/editorconfig-vim'
 
 
 " -----------------------------------------------------------------------------
@@ -527,6 +528,8 @@ nmap <leader>ih <Plug>(YCMToggleInlayHints)
 nmap <leader>ht <Plug>(YCMTypeHierarchy)
 nmap <leader>hc <Plug>(YCMCallHierarchy)
 nmap <leader>rs :YcmRestartServer<CR>
+nmap <leader>ld :YcmDiags<CR>
+nmap <leader>fi :YcmCompleter FixIt<CR>
 
 " =============================================================================
 "                          << 以下为UltiSnips配置 >>
